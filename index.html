@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe App</title>
+    <!-- Include Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<button id="toggleBtn">
+    <i class="fas fa-sun"></i> <!-- Sun icon for day mode -->
+</button>
+<style>
+/* Center the video container */
+.video-container {
+    display: flex; /* Use flexbox to center the iframe */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    margin: 20px 0; /* Add space around the video */
+}
+
+/* Make the iframe responsive */
+iframe {
+    width: 100%; /* Set iframe to take full width of its container */
+    max-width: 800px; /* Optional: set a max width for the iframe */
+    height: 250px; /* Set a default height for the iframe */
+    border: none; /* Remove border around iframe */
+}
+.TitleCategory {
+    color: #ffffff;
+    width: 100%;
+    height: 70%;
+    align-content: center;
+    font-weight: bold;
+    text-shadow: 3px 0 0 black;
+    background-color: rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+/* Add this inside your existing <style> block */
+body.night-mode .search-container::before {
+    background: #333; /* Darker background for night mode */
+    color: #fff;      /* White text for contrast */
+}
+body.night-mode .search-container{
+    background: #333; /* Darker background for night mode */
+    color: #fff;      /* White text for contrast */
+}
+body.night-mode .search-box{
+    background: #333; /* Darker background for night mode */
+    color: #fff;      /* White text for contrast */
+}
+body.night-mode #categorySearch{
+    background: #333; /* Darker background for night mode */
+    color: #fff;      /* White text for contrast */
+}
+ body.night-mode #recipeSearch{
+    background: #333; /* Darker background for night mode */
+    color: #fff;      /* White text for contrast */
+}
+.search-container::before {
+   content: '\f002'; /* Font Awesome search icon */
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900; /* Required for Font Awesome solid icons */
+    font-size: 18px;
+    color: #999;
+    margin-right: 10px;
+}
+#backToTop {
+    position: fixed;
+    bottom: 79px;
+    right: 20px;
+    background-color: #CC0033;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    display: none; /* Hidden by default */
+    z-index: 1000;
+}
+
+#backToTop i {
+    margin-right: 5px;
+}
+
+#backToTop:hover {
+    background-color: #DD0000;
+}
+
+/* Define the fade-in animation */
+@keyframes fadeIn {
+    0% {
+        opacity: 0; /* Element starts fully transparent */
+    }
+    100% {
+        opacity: 1; /* Element ends fully opaque */
+    }
+}
+
+/* Apply the fade-in effect */
+.fade-in {
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+#recipeSearch {
+    width: 100%;
+    border-radius: 11px;
+    font-size: 16px;
+}
+#categorySearch {
+    width: 100%;
+    border-radius: 11px;
+    font-size: 16px;
+}
+img {
+    border-radius: 5px;
+}
+#Morocco::after {
+    content: "🇮🇹🍝";
+    padding-left: 22px;
+    font-size: 32px;
+}
+#recipesTitle::after {
+    content: "🇮🇹🍝";
+    padding-left: 22px;
+    font-size: 32px;
+}
+.TextRecipes {
+    border: 3px dotted #c8a402;
+    background: #ffdc052b;
+    padding-top: 10px;
+    padding-bottom: 12px;
+    border-radius: 9px;
+    padding-left: 12px;
+}
+#list2024 {
+    background: #00ae5a;
+    height: 24px;
+    padding: 8px 6px 7px 22px;
+    border-bottom: 6px Solid #CC0033;
+    color: #ffffff;
+    font-weight: bold;
+    width: 70%;
+    border-radius: 2px 37px 4px 15px;
+    box-shadow: 0 4px 6px 2px rgb(0 0 0 / 41%);
+}
+
+/* Bold text for sections */
+
+.bold {     
+            font-weight: bold;
+        text-transform: uppercase;
+    padding-bottom: 8px;
+    margin-bottom: -29px;
+}
+/* Add this inside your existing <style> block */
+body.night-mode .grid-item {
+    background: #333; /* Darker background for night mode */
+    color: #fff;      /* White text for contrast */
+}
+/* Add this inside your existing <style> block */
+body.night-mode .recipe-detail {
+    background: #333;  /* Darker background for night mode */
+    color: #fff;       /* White text for contrast */
+}
+ /* Night mode styles */
+    body.night-mode {
+        background-color: #121212;
+        color: #ffffff;
+    }
+
+    /* Button style */
+    #toggleBtn {
+        font-size: 24px;
+        padding: 10px 20px;
+        background-color: #fff;
+        border: none;
+        cursor: pointer;
+        color: #000;
+        transition: background-color 0.3s;
+    }
+
+    #toggleBtn:hover {
+        background-color: #ddd;
+    }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4; /* Fallback color */
+            background-image: url('path/to/your/background-image.jpg'); /* Fixed background image */
+            background-size: cover; /* Cover the entire viewport */
+            background-attachment: fixed; /* Fix the background */
+            margin: 0;
+            padding: 0;
+            padding-top: 65px;
+            position: relative;
+            min-height: 100vh; /* Ensure body takes full height */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hidden {
+            display: none;
+        }
+.custom-title {
+text-align: center; /* Center the text */ 
+ text-transform: uppercase;
+        
+
+        }
+.Categories-title {
+            border-radius: 5px;
+            text-align: center; /* Center the text */
+            font-size: 30px;
+padding: 10px;
+margin-top: 20px;
+text-align: center; /* Center the text */ 
+ text-transform: uppercase;
+background-color: #009900; /* Semi-transparent green background */
+  color: white; /* White text */
+        }
+.b-title {
+text-align: center; /* Center the text */ 
+font-size: 15px;
+}
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            padding: 20px; /* Padding for the grid */
+            flex: 1; /* Allow grid to grow and fill available space */
+           padding-bottom: 20%;
+        }
+/* Category Grid */
+.gridcategory {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 20px;
+    flex: 1;
+    padding-bottom: 20%;
+}
+
+.grid-item-categoryGrid {
+    cursor: pointer;
+    border: 5px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.8s;
+    padding: 10px;
+    position: sticky; /* Make container a sticky position */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100px;
+    position: relative; /* Ensure the grid item is a positioned container */
+}
+
+.grid-item-categoryGrid img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute; /* Position image behind text */
+    top: 0;
+    left: 0;
+    opacity: 1; /* Keep image very transparent */
+    object-fit: cover; /* Ensures image covers the container */
+    z-index: -1; /* Move image behind text */
+}
+
+.grid-item-categoryGrid .text-overlay {
+    position: relative; /* Ensure text is above image */
+    z-index: 1; /* Text stays above image */
+    color: #fff; /* Adjust color for contrast with the background */
+    font-size: 1.2em; /* Adjust font size as needed */
+}
+
+.grid-item-categoryGrid:hover {
+    transform: scale(1.05);
+}
+/* Category Grid end */
+
+
+        .grid-item {
+            cursor: pointer;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            background: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .grid-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .grid-item:hover {
+            transform: scale(1.05);
+        }
+
+        .recipe-detail {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 5px;
+            background: #fff;
+            margin: 4px; /* Margin for detail box */
+            padding-bottom: 23%;
+            white-space: pre-line;
+            margin-block-end: -1em;
+        }
+
+        /* Title styles */
+        .recipes-title {
+            background-color: #009900; /* Semi-transparent green background */
+            color: white; /* White text */
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center; /* Center the text */ 
+            text-transform: uppercase;
+            margin-top: 20px;
+            font-size: 30px;
+   font-weight: bold;
+
+        }
+
+        .recipes-title i {
+            font-size: 30px; /* Icon size */
+            margin-right: 10px; /* Space between icon and text */
+           text-align: center; /* Center the text */ 
+          text-transform: uppercase;
+        }
+.recipes-title::before {
+    content: '\f2e7'; /* Unicode for the Font Awesome utensils icon */
+    font-family: 'Font Awesome 5 Free'; /* Font Awesome font-family */
+    font-weight: 900; /* Necessary for solid icons */
+    color: white; /* Icon color */
+    margin-right: 10px; /* Space between the icon and title */
+    font-size: 24px; /* Size of the icon */
+}
+
+        /* Navigation Bar styles */
+        .nav-bar {
+            position: fixed; /* Fixed at the bottom */
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #CC0033; /* Semi-transparent blue background */
+            display: flex; /* Flexbox for horizontal layout */
+            justify-content: space-between; /* Space evenly between buttons */
+            padding: 10px 20px; /* Padding for buttons */
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+        }
+ 
+        .nav-button {
+            background: none; /* No default background */
+            color: white; /* White text */
+            border: none;
+            cursor: pointer;
+            text-align: center; /* Center text */
+            flex: 0 0 auto; /* Do not grow or shrink */
+            font-size: 24px; /* Icon size */
+            height: 50px; /* Consistent height */
+        }
+
+        /* Add fixed Home button */
+        #homeButton {
+            background-color: #CC0033; /* Same as nav bar background */
+            color: white; /* White text */
+            border: none;
+            border-radius: 5px; /* Rounded corners */
+            padding: 10px; /* Padding */
+            cursor: pointer; /* Pointer cursor */
+            z-index: 1001; /* On top of sticky nav */
+        }
+
+        #homeButton i {
+            margin-right: 5px; /* Space between icon and text */
+        }
+/* CSS */
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
+  background-color: #f4f7fb;
+  padding: 10px 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 500px;
+  margin: 20px auto;
+}
+
+.search-box {
+  width: 100%; /* Ensures the search box takes up 100% of the container's width */
+  padding: 8px 12px; /* Adjusts padding to make the box fit nicely */
+  font-size: 12px; /* Smaller text size for better fit */
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  outline: none;
+  background-color: #fff;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+/* Add a hover effect */
+.search-box:hover {
+  border-color: #4a90e2; /* Subtle hover effect for the border */
+}
+
+/* Focus effect */
+.search-box:focus {
+  border-color: #4a90e2; /* Highlight border color on focus */
+  box-shadow: 0 0 8px rgba(74, 144, 226, 0.5); /* Subtle focus effect */
+}
+.video-container {
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+<button id="backToTop" onclick="scrollToTop()">
+    <i class="fas fa-arrow-up"></i> <!-- Icon for the button -->
+</button>
+
+    <!-- Categories Page -->
+    <div id="categoriesPage">
+        <h1 class="Categories-title" id="Morocco"><i class="fas fa-list-alt"></i> Categories</h1>
+<div class="search-container">
+    <input type="text" id="categorySearch" placeholder="Search Categories..." onkeyup="filterCategories()">
+</div>
+
+        <div class="gridcategory" id="categoryGrid"></div>
+    </div>
+
+    <!-- Recipes Page -->
+
+    <div id="recipesPage" class="hidden">
+
+      <div class="recipes-title" id="recipesTitle"></div>
+<!-- Search Box for Recipes -->
+    <div class="search-container">
+        <input type="text" id="recipeSearch" placeholder="Search Recipes..." onkeyup="filterRecipes()">
+    </div>
+       <div class="grid" id="recipeGrid"></div>
+    </div></div>
+
+    <!-- Recipe Detail Page -->
+    <div id="recipeDetailPage" class="hidden">
+        <div class="recipe-detail" id="recipeDetail"></div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <div class="nav-bar">
+        <button class="nav-button" id="homeButton" onclick="showPage('categories')">
+            <i class="fas fa-home"></i>
+        </button>
+        <button class="nav-button" id="backButton" style="display:none;" onclick="goBack('recipes')">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+    </div>
+<script>
+    // Google Sheets URL for categories
+    const categorySheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQlhbSnDj5Wx9ZUYFDCnI3xG0VOouijxoHTIf4K5dt0kP8ptql0LVCYdfpbCs9MD88ELmem3MjIc8hO/pub?gid=0&single=true&output=csv';
+
+    // Fetch and display categories
+    async function displayCategories() {
+        try {
+            const response = await fetch(categorySheetUrl);
+            const text = await response.text();
+            const rows = text.split('\n').map(row => row.split(',')); // Convert to usable format
+
+            const categoryGrid = document.getElementById('categoryGrid');
+            categoryGrid.innerHTML = ''; // Clear previous categories
+            rows.forEach((category, index) => {
+                if (index === 0) return; // Skip header row
+                const gridItem = document.createElement('div');
+                gridItem.className = 'grid-item-categoryGrid fade-in';
+                // Use a thumbnail image (e.g., by appending a query string for low quality)
+                const lowQualityThumbnail = category[1] + '?w=200&h=200'; // Adjust the URL to request a smaller image
+                gridItem.innerHTML = `
+                    <img src="${lowQualityThumbnail}" alt="${category[0]}">
+                    <h3 class="TitleCategory">${category[0]}</h3>
+                `;
+                // Add click event to fetch recipes based on category
+                gridItem.onclick = () => {
+                    fetchRecipes(category[2]); // Fetch recipes from the corresponding sheet link
+                };
+                categoryGrid.appendChild(gridItem);
+            });
+        } catch (error) {
+            console.error('Error fetching categories:', error);
+        }
+    }
+
+    // Fetch recipes for the selected category
+    async function fetchRecipes(sheetUrl) {
+        // Extract gid from the URL
+        const gid = sheetUrl.split('gid=')[1].split('#')[0]; // Get gid part of the link
+        const baseSheetUrl = sheetUrl.split('/edit')[0]; // Get base URL
+        const fetchUrl = `${baseSheetUrl}/gviz/tq?tqx=out:json&gid=${gid}`; // Construct fetch URL
+
+        try {
+            const response = await fetch(fetchUrl); // Fetch recipes from the selected sheet
+            const data = await response.text();
+            const json = JSON.parse(data.substr(47).slice(0, -2)); // Parse JSON
+            const recipes = json.table.rows.map(row => row.c.map(cell => cell.v)); // Convert to usable format
+
+            console.log('Fetched recipes:', recipes); // Log fetched recipes
+
+            const recipeGrid = document.getElementById('recipeGrid');
+            recipeGrid.innerHTML = ''; // Clear previous recipes
+            recipes.forEach(recipe => {
+                const gridItem = document.createElement('div');
+                gridItem.className = 'grid-item fade-in';
+                // Use a thumbnail image (e.g., by appending a query string for low quality)
+                const lowQualityRecipeImage = recipe[1] + '?w=200&h=200'; // Adjust the URL to request a smaller image
+                gridItem.innerHTML = `
+                    <img src="${lowQualityRecipeImage}" alt="${recipe[0]}">
+                    <h3 class="b-title">${recipe[0]}</h3>
+                `;
+                gridItem.onclick = () => {
+                    showRecipeDetail(recipe[0], recipe[1], recipe[2], recipe[3], recipe[4], recipe[5], recipe[6]); // Show recipe details with new parameters
+                };
+                recipeGrid.appendChild(gridItem);
+            });
+
+            // Set title to "Recipes" correctly without 'edit' text
+            const categoryName = sheetUrl.split('/')[5]; // Extract category name from URL
+            document.getElementById('recipesTitle').innerText = `Recipes`;
+            showPage('recipes'); // Show recipes page
+        } catch (error) {
+            console.error('Error fetching recipes:', error);
+        }
+    }
+
+    // Show recipe details
+    function showRecipeDetail(title, imageUrl, ingredients, method, tips, prepTime, videoUrl) {
+        // Generate Vimeo embed URL from the provided video URL
+        let vimeoEmbedUrl = '';
+        if (videoUrl) {
+            // Extract the video ID from the URL (Vimeo ID is the number after vimeo.com/)
+            const videoId = videoUrl.split('vimeo.com/')[1];
+            vimeoEmbedUrl = `https://player.vimeo.com/video/${videoId}`;
+        }
+
+        // Display the recipe details along with the video
+        document.getElementById('recipeDetail').innerHTML = `
+            <h2 class="custom-title">${title}</h2>
+            <img src="${imageUrl}" alt="${title}" style="width:100%; height:auto;">
+            <p id="list2024" class="bold">⏰ PREPARATION TIME:</p>
+            <p class="TextRecipes">${prepTime}</p>
+            <p id="list2024" class="bold">📝 INGREDIENTS:</p>
+            <p class="TextRecipes">${ingredients}</p>
+            <p id="list2024" class="bold">👩‍🍳 METHOD:</p>
+            <p class="TextRecipes">${method}</p>
+            <p id="list2024" class="bold">💡TIPS:</p>
+            <p class="TextRecipes">${tips}</p>
+            
+            ${vimeoEmbedUrl ? `
+                <p id="list2024" class="bold">📹 WATCH VIDEO:</p>
+                <p class="TextRecipes">
+                    <iframe width="100%" height="315" src="${vimeoEmbedUrl}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                </p>
+            ` : ''}
+        `;
+        document.getElementById('backButton').style.display = 'block'; // Show back button only in recipe detail
+        showPage('recipeDetail'); // Show recipe detail page
+    }
+
+    // Show the appropriate page
+    function showPage(page) {
+        document.getElementById('categoriesPage').classList.add('hidden');
+        document.getElementById('recipesPage').classList.add('hidden');
+        document.getElementById('recipeDetailPage').classList.add('hidden');
+
+        if (page === 'categories') {
+            document.getElementById('categoriesPage').classList.remove('hidden');
+            document.getElementById('backButton').style.display = 'none'; // Hide back button
+        } else if (page === 'recipes') {
+            document.getElementById('recipesPage').classList.remove('hidden');
+            document.getElementById('backButton').style.display = 'none'; // Hide back button
+        } else if (page === 'recipeDetail') {
+            document.getElementById('recipeDetailPage').classList.remove('hidden');
+        }
+    }
+
+    // Go back to previous page
+    function goBack(page) {
+        showPage(page); // Show the previous page
+        document.getElementById('backButton').style.display = 'none'; // Hide back button
+    }
+
+    // Initialize categories on page load
+    window.onload = displayCategories;
+</script>
+
+
+<script>
+    const toggleBtn = document.getElementById('toggleBtn');
+    const body = document.body;
+
+    // Event listener to toggle night mode
+    toggleBtn.addEventListener('click', () => {
+        body.classList.toggle('night-mode'); // Toggle the night mode class
+        // Change the icon based on the mode
+        if (body.classList.contains('night-mode')) {
+            toggleBtn.innerHTML = '<i class="fas fa-moon"></i>'; // Moon icon for night mode
+        } else {
+            toggleBtn.innerHTML = '<i class="fas fa-sun"></i>'; // Sun icon for day mode
+        }
+    });
+</script>
+<script>
+function filterCategories() {
+    const searchQuery = document.getElementById('categorySearch').value.toLowerCase();
+    const categoryItems = document.getElementsByClassName('grid-item-categoryGrid fade-in');
+    Array.from(categoryItems).forEach(item => {
+        const categoryName = item.getElementsByTagName('h3')[0].textContent.toLowerCase();
+        item.style.display = categoryName.includes(searchQuery) ? 'block' : 'none';
+    });
+}
+
+function filterRecipes() {
+    const searchQuery = document.getElementById('recipeSearch').value.toLowerCase();
+    const recipeItems = document.getElementsByClassName('recipe-item'); // Ensure each recipe item has class 'recipe-item'
+    Array.from(recipeItems).forEach(item => {
+        const recipeName = item.getElementsByTagName('h3')[0].textContent.toLowerCase();
+        item.style.display = recipeName.includes(searchQuery) ? 'block' : 'none';
+    });
+}
+</script>
+<script>
+function filterCategories() {
+    const searchQuery = document.getElementById('categorySearch').value.toLowerCase();
+    const categoryItems = document.getElementsByClassName('grid-item-categoryGrid fade-in');
+    Array.from(categoryItems).forEach(item => {
+        const categoryName = item.getElementsByTagName('h3')[0].textContent.toLowerCase();
+        item.style.display = categoryName.includes(searchQuery) ? 'block' : 'none';
+    });
+}
+function filterRecipes() {
+    const input = document.getElementById("recipeSearch").value.toLowerCase();
+    const recipes = document.querySelectorAll("#recipeGrid .grid-item");
+
+    recipes.forEach(recipe => {
+        const title = recipe.querySelector("h3").textContent.toLowerCase();
+        recipe.style.display = title.includes(input) ? "block" : "none";
+    });
+}
+</script>
+<script>
+// Show the button when scrolling down 200px from the top
+window.onscroll = function() {
+    const backToTopButton = document.getElementById("backToTop");
+    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+        backToTopButton.style.display = "block";
+    } else {
+        backToTopButton.style.display = "none";
+    }
+};
+
+// Function to scroll to the top
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+</script>
+</body>
+</html>
