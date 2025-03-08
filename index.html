@@ -1,136 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Canva Pro Referral Program</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canva Pro Styled Page</title>
     <style>
-        :root {
-            --canva-purple: #7B3FE4;
-            --canva-cyan: #00C4CC;
-            --gradient: linear-gradient(45deg, var(--canva-purple), var(--canva-cyan));
-            --surface: #FFFFFF;
-            --bg: #F5F9FF;
-        }
-
         body {
-            font-family: 'Arial', sans-serif;
-            background: var(--bg);
+            font-family: Arial, sans-serif;
+            background-color: #F3F5FF;
+            text-align: center;
             margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #2A70F0;
             padding: 20px;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
-
+        .header img {
+            max-width: 150px;
+        }
         .container {
-            background: var(--surface);
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 4px 15px rgba(123, 63, 228, 0.1);
-            max-width: 500px;
-            width: 100%;
+            margin: 20px auto;
+            max-width: 800px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-
         h1 {
-            color: var(--canva-purple);
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 24px;
+            color: #2A70F0;
         }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        input {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid var(--canva-purple);
-            border-radius: 8px;
+        p {
+            color: #444;
             font-size: 16px;
-            margin-bottom: 10px;
         }
-
-        button {
-            background: var(--gradient);
+        .button {
+            background-color: #7B3FF2;
             color: white;
+            padding: 10px 20px;
             border: none;
-            padding: 15px;
-            border-radius: 8px;
-            width: 100%;
-            font-size: 18px;
+            border-radius: 5px;
             cursor: pointer;
-            transition: transform 0.2s ease;
+            text-decoration: none;
+            font-size: 16px;
         }
-
-        button:hover {
-            transform: translateY(-2px);
-        }
-
-        .referral-link {
-            margin-top: 20px;
-            padding: 15px;
-            background: #f8f9fa;
-            border: 1px solid var(--canva-purple);
-            border-radius: 8px;
-            word-break: break-all;
-            display: none;
-        }
-
-        .success-message {
-            color: var(--canva-cyan);
-            text-align: center;
-            margin: 20px 0;
-            display: none;
+        .button:hover {
+            background-color: #6328C5;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Generate Your Canva Pro Referral Link</h1>
-        
-        <div class="form-group">
-            <input type="email" id="email" placeholder="Enter your email" required>
-        </div>
-        
-        <div class="form-group">
-            <input type="text" id="referralCode" placeholder="Enter referral code" required>
-        </div>
-        
-        <button onclick="generateLink()">Generate Referral Link</button>
-        
-        <div class="success-message" id="successMessage">
-            Success! Your referral link is ready:
-        </div>
-        
-        <div class="referral-link" id="referralLink"></div>
+    <div class="header">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Canva_Logo.png" alt="Canva Pro Logo">
     </div>
-
-    <script>
-        function generateLink() {
-            const email = document.getElementById('email').value;
-            const referralCode = document.getElementById('referralCode').value;
-            
-            if (!email || !referralCode) {
-                alert('Please fill all fields');
-                return;
-            }
-
-            // Show loading state
-            const button = document.querySelector('button');
-            button.disabled = true;
-            button.textContent = 'Generating...';
-            
-            // Simulate API call
-            setTimeout(() => {
-                const link = `https://canva.pro/referral/${encodeURIComponent(email)}/${encodeURIComponent(referralCode)}`;
-                
-                document.getElementById('referralLink').textContent = link;
-                document.getElementById('successMessage').style.display = 'block';
-                document.getElementById('referralLink').style.display = 'block';
-                button.style.display = 'none';
-            }, 2000);
-        }
-    </script>
+    <div class="container">
+        <h1>Welcome to Canva Pro</h1>
+        <p>Experience the power of professional design with Canva Pro.</p>
+        <a href="#" class="button">Get Started</a>
+    </div>
 </body>
 </html>
