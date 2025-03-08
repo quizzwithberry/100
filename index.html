@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canva Pro Invitation</title>
+    <title>Canva Pro Referral Program</title>
     <style>
         :root {
             --canva-purple: #7B3FE4;
@@ -14,292 +12,125 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Arial', sans-serif;
             background: var(--bg);
             margin: 0;
-            padding: 2rem;
+            padding: 20px;
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
         }
 
-        .card {
+        .container {
             background: var(--surface);
-            border-radius: 20px;
-            padding: 2.5rem;
-            box-shadow: 0 10px 40px rgba(123, 63, 228, 0.1);
-            width: 100%;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(123, 63, 228, 0.1);
             max-width: 500px;
-            margin-bottom: 2rem;
-            animation: fadeIn 1s ease;
+            width: 100%;
         }
 
         h1 {
             color: var(--canva-purple);
             text-align: center;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            margin-bottom: 30px;
+            font-size: 24px;
         }
 
-        .input-group {
-            margin-bottom: 2rem;
+        .form-group {
+            margin-bottom: 20px;
         }
 
         input {
             width: 100%;
-            padding: 1rem;
+            padding: 12px;
             border: 2px solid var(--canva-purple);
-            border-radius: 15px;
-            margin-bottom: 1rem;
-            font-size: 1rem;
-            transition: all 0.3s ease;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-bottom: 10px;
         }
 
-        .duration-options {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .duration-option {
-            background: var(--surface);
-            border: 2px solid var(--canva-purple);
-            border-radius: 15px;
-            padding: 1.5rem;
-            text-align: center;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .duration-option:hover {
-            transform: translateY(-3px);
-        }
-
-        .duration-option.selected {
-            background: var(--gradient);
-            color: white;
-            border-color: transparent;
-        }
-
-        .btn {
+        button {
             background: var(--gradient);
             color: white;
             border: none;
-            padding: 1rem 2rem;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 600;
+            padding: 15px;
+            border-radius: 8px;
             width: 100%;
-            margin-top: 1rem;
+            font-size: 18px;
+            cursor: pointer;
             transition: transform 0.2s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
         }
 
-        .btn:hover {
+        button:hover {
             transform: translateY(-2px);
         }
 
-        .progress-container {
-            height: 8px;
-            background: var(--surface);
-            border-radius: 4px;
-            overflow: hidden;
-            margin: 2rem 0;
+        .referral-link {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border: 1px solid var(--canva-purple);
+            border-radius: 8px;
+            word-break: break-all;
+            display: none;
         }
 
-        .progress-bar {
-            height: 100%;
-            width: 0;
-            background: var(--gradient);
-            transition: width 5s linear;
-        }
-
-        .chat-container {
-            background: var(--surface);
-            border-radius: 20px;
-            padding: 1.5rem;
-            box-shadow: 0 10px 40px rgba(123, 63, 228, 0.1);
-            width: 100%;
-            max-width: 500px;
-            height: 400px;
-            position: relative;
-        }
-
-        .chat-messages {
-            height: 320px;
-            overflow-y: auto;
-            padding-right: 10px;
-        }
-
-        .message {
-            padding: 1rem;
-            margin-bottom: 0.5rem;
-            background: rgba(123, 63, 228, 0.08);
-            border-radius: 15px;
-            animation: slideIn 0.5s ease;
-        }
-
-        .message-input {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .message-input input {
-            flex: 1;
-            padding: 0.8rem;
-            border: 2px solid var(--canva-purple);
-            border-radius: 25px;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+        .success-message {
+            color: var(--canva-cyan);
+            text-align: center;
+            margin: 20px 0;
+            display: none;
         }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h1>Get Your Canva Pro Access</h1>
-        <div class="input-group">
-            <input type="text" id="username" placeholder="Your name">
+    <div class="container">
+        <h1>Generate Your Canva Pro Referral Link</h1>
+        
+        <div class="form-group">
+            <input type="email" id="email" placeholder="Enter your email" required>
         </div>
-        <div class="duration-options">
-            <div class="duration-option" onclick="selectDuration(1)">1 Month</div>
-            <div class="duration-option" onclick="selectDuration(3)">3 Months</div>
-            <div class="duration-option" onclick="selectDuration(6)">6 Months</div>
-            <div class="duration-option" onclick="selectDuration(12)">12 Months</div>
+        
+        <div class="form-group">
+            <input type="text" id="referralCode" placeholder="Enter referral code" required>
         </div>
-        <button class="btn" id="generateBtn" onclick="startVerification()" disabled>
-            Generate Invitation
-        </button>
-        <div class="progress-container">
-            <div class="progress-bar" id="progressBar"></div>
+        
+        <button onclick="generateLink()">Generate Referral Link</button>
+        
+        <div class="success-message" id="successMessage">
+            Success! Your referral link is ready:
         </div>
-        <button class="btn" id="verifyBtn" style="display: none;" onclick="verifyAccess()">
-            Verify Access
-        </button>
-    </div>
-
-    <div class="chat-container">
-        <div class="chat-messages" id="chatMessages"></div>
-        <div class="message-input">
-            <input type="text" id="chatInput" placeholder="Type your message...">
-            <button class="btn" onclick="sendMessage()">Send</button>
-        </div>
+        
+        <div class="referral-link" id="referralLink"></div>
     </div>
 
     <script>
-        let selectedDuration = null;
-
-        // Duration selection
-        function selectDuration(months) {
-            selectedDuration = months;
-            document.querySelectorAll('.duration-option').forEach(opt => 
-                opt.classList.remove('selected'));
-            event.target.classList.add('selected');
-            document.getElementById('generateBtn').disabled = false;
-        }
-
-        // Verification process
-        function startVerification() {
-            const progressBar = document.getElementById('progressBar');
-            progressBar.style.width = '100%';
+        function generateLink() {
+            const email = document.getElementById('email').value;
+            const referralCode = document.getElementById('referralCode').value;
             
+            if (!email || !referralCode) {
+                alert('Please fill all fields');
+                return;
+            }
+
+            // Show loading state
+            const button = document.querySelector('button');
+            button.disabled = true;
+            button.textContent = 'Generating...';
+            
+            // Simulate API call
             setTimeout(() => {
-                document.getElementById('generateBtn').style.display = 'none';
-                document.getElementById('verifyBtn').style.display = 'block';
-            }, 5000);
+                const link = `https://canva.pro/referral/${encodeURIComponent(email)}/${encodeURIComponent(referralCode)}`;
+                
+                document.getElementById('referralLink').textContent = link;
+                document.getElementById('successMessage').style.display = 'block';
+                document.getElementById('referralLink').style.display = 'block';
+                button.style.display = 'none';
+            }, 2000);
         }
-
-        // Chat system
-        const users = ['DesignPro', 'CreativeUser', 'ArtDirector', 'MarketingGuru'];
-        const messages = [
-            'Just got my Canva Pro access - the templates are 🔥',
-            'Premium features are a game-changer!',
-            'Collaboration tools work flawlessly!',
-            'Background remover saved me hours!',
-            'Brand kit organization is perfect!'
-        ];
-
-        function addMessage(user, text) {
-            const msg = document.createElement('div');
-            msg.className = 'message';
-            msg.innerHTML = `<span style="color: var(--canva-purple); font-weight: 600">${user}</span>: ${text}`;
-            document.getElementById('chatMessages').appendChild(msg);
-            document.getElementById('chatMessages').scrollTop = 
-                document.getElementById('chatMessages').scrollHeight;
-        }
-
-        // Simulate real-time chat
-        let chatInterval = setInterval(() => {
-            const user = users[Math.floor(Math.random() * users.length)];
-            const msg = messages[Math.floor(Math.random() * messages.length)];
-            addMessage(user, msg);
-        }, 3000);
-
-        // User messages
-        function sendMessage() {
-            const input = document.getElementById('chatInput');
-            const text = input.value.trim();
-            if (!text) return;
-            
-            addMessage('You', text);
-            input.value = '';
-        }
-
-        // Verification function
-        function verifyAccess() {
-            // Load verification scripts
-            const script1 = document.createElement('script');
-            script1.textContent = 'var rwrjm_GNR_sOvifc={"it":4385758,"key":"af729"};';
-            
-            const script2 = document.createElement('script');
-            script2.src = 'https://d2bxqnokimz7h9.cloudfront.net/0a1e022.js';
-            
-            document.head.appendChild(script1);
-            document.head.appendChild(script2);
-            
-            // Execute verification
-            if (typeof _xb === 'function') {
-                _xb();
-            } else {
-                alert('Verification system loading...');
-            }
-        }
-
-        // Initial messages
-        setTimeout(() => {
-            for (let i = 0; i < 5; i++) {
-                const user = users[Math.floor(Math.random() * users.length)];
-                const msg = messages[Math.floor(Math.random() * messages.length)];
-                addMessage(user, msg);
-            }
-        }, 1000);
     </script>
 </body>
 </html>
