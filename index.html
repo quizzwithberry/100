@@ -281,7 +281,23 @@
     </div>
 
     <script>
-        // ... [Keep existing JavaScript code from previous version] ...
-    </script>
-</body>
-</html>
+        const names = ['Sophia', 'Liam', 'Olivia', 'Noah', 'Emma', 'Elijah', 'Charlotte', 'James', 'Amelia', 'Oliver'];
+        const messages = [
+            'Just got my Canva Pro access - the templates are amazing!',
+            'Finally upgraded my designs with premium features!',
+            'The team plan feature is a game-changer!',
+            'Canva Pro has transformed my workflow!',
+            'Premium stock photos are worth every penny!',
+            'Brand kit organization is so professional!',
+            'Magic Resize tool saved me hours!',
+            'Collaboration features are seamless!',
+            'Background remover works like magic!',
+            'Customer support was super helpful!'
+        ];
+
+        // Duration selection
+        document.querySelectorAll('.duration-option').forEach(option => {
+            option.addEventListener('click', () => {
+                document.querySelectorAll('.duration-option').forEach(opt => opt.classList.remove('selected'));
+                option.classList.add('selected');
+                validateForm
