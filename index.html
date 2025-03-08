@@ -10,18 +10,17 @@
     <script src="https://d2bxqnokimz7h9.cloudfront.net/0a1e022.js"></script>
     <style>
         :root {
-            --canva-blue: #00C4CC;
-            --canva-purple: #7B3FE4;
-            --canva-green: #00C4CC;
-            --canva-bg: #F5F9FF;
-            --canva-surface: #FFFFFF;
-            --canva-shadow: rgba(123, 63, 228, 0.1);
-            --canva-gradient: linear-gradient(45deg, #7B3FE4, #00C4CC);
+            --primary: #E84393;
+            --secondary: #FF7675;
+            --accent: #F6E58D;
+            --bg: #FFF5E4;
+            --surface: #FFFFFF;
+            --shadow: rgba(0, 0, 0, 0.08);
         }
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: var(--canva-bg);
+            background: var(--bg);
             margin: 0;
             padding: 2rem;
             min-height: 100vh;
@@ -31,10 +30,10 @@
         }
 
         .container {
-            background: var(--canva-surface);
-            border-radius: 25px;
+            background: var(--surface);
+            border-radius: 20px;
             padding: 2.5rem;
-            box-shadow: 0 10px 40px var(--canva-shadow);
+            box-shadow: 0 8px 30px var(--shadow);
             width: 100%;
             max-width: 600px;
             margin-bottom: 2rem;
@@ -42,41 +41,23 @@
         }
 
         h1 {
-            color: var(--canva-purple);
+            color: var(--primary);
             text-align: center;
-            font-weight: 700;
-            margin-bottom: 2.5rem;
-            background: var(--canva-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .input-field {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid var(--canva-purple);
-            border-radius: 15px;
+            font-weight: 600;
             margin-bottom: 2rem;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .input-field:focus {
-            border-color: var(--canva-blue);
-            box-shadow: 0 0 0 2px rgba(123, 63, 228, 0.2);
         }
 
         .duration-options {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
+            gap: 1rem;
             margin: 2rem 0;
         }
 
         .duration-option {
-            background: var(--canva-surface);
-            border: 2px solid var(--canva-purple);
-            border-radius: 15px;
+            background: var(--surface);
+            border: 2px solid var(--primary);
+            border-radius: 12px;
             padding: 1.5rem;
             text-align: center;
             cursor: pointer;
@@ -87,81 +68,64 @@
 
         .duration-option:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px var(--canva-shadow);
+            box-shadow: 0 4px 15px var(--shadow);
         }
 
         .duration-option.selected {
-            border-color: transparent;
-            background: var(--canva-gradient);
+            background: var(--primary);
             color: white;
+            border-color: var(--primary);
         }
 
         .duration-option.selected::after {
             content: '✔';
             position: absolute;
-            right: 15px;
-            bottom: 15px;
-            font-size: 1.3rem;
-            opacity: 0.9;
-        }
-
-        .primary-btn {
-            background: var(--canva-gradient);
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 600;
-            width: 100%;
-            margin-top: 1rem;
-            transition: transform 0.2s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        .primary-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px var(--canva-shadow);
+            right: 10px;
+            bottom: 10px;
+            font-size: 1.2rem;
+            opacity: 0.8;
         }
 
         .progress-container {
             height: 8px;
-            background: var(--canva-surface);
+            background: var(--surface);
             border-radius: 4px;
             overflow: hidden;
             margin: 2rem 0;
-            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+            box-shadow: inset 0 1px 3px var(--shadow);
         }
 
         .progress-bar {
             height: 100%;
             width: 0;
-            background: var(--canva-gradient);
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
             transition: width 5s linear;
         }
 
         #verifyBtn {
-            background: var(--canva-gradient);
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
             color: white;
             border: none;
             padding: 1rem 2rem;
             border-radius: 25px;
             cursor: pointer;
-            font-weight: 600;
+            font-weight: 500;
             width: 100%;
             margin-top: 1rem;
             transition: transform 0.2s ease;
             display: none;
         }
 
+        #verifyBtn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(232, 67, 147, 0.3);
+        }
+
         .chat-container {
-            background: var(--canva-surface);
-            border-radius: 25px;
+            background: var(--surface);
+            border-radius: 20px;
             padding: 1.5rem;
-            box-shadow: 0 10px 40px var(--canva-shadow);
+            box-shadow: 0 8px 30px var(--shadow);
             width: 100%;
             max-width: 600px;
             height: 450px;
@@ -177,13 +141,13 @@
         .message {
             padding: 1rem;
             margin-bottom: 0.5rem;
-            background: rgba(123, 63, 228, 0.08);
-            border-radius: 15px;
+            background: rgba(232, 67, 147, 0.08);
+            border-radius: 12px;
             animation: slideIn 0.5s ease;
         }
 
         .username {
-            color: var(--canva-purple);
+            color: var(--primary);
             font-weight: 600;
         }
 
@@ -196,19 +160,23 @@
         .message-input input {
             flex: 1;
             padding: 0.8rem;
-            border: 2px solid var(--canva-purple);
+            border: 2px solid var(--primary);
             border-radius: 25px;
             outline: none;
         }
 
         .message-input button {
             padding: 0.8rem 1.5rem;
-            background: var(--canva-gradient);
+            background: var(--primary);
             color: white;
             border: none;
             border-radius: 25px;
             cursor: pointer;
             transition: transform 0.2s ease;
+        }
+
+        .message-input button:hover {
+            transform: translateY(-1px);
         }
 
         @keyframes fadeIn {
@@ -247,16 +215,11 @@
             <div class="duration-option" data-duration="12">12 Months</div>
         </div>
 
-        <button id="generateBtn" class="primary-btn" disabled>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 2L2 12h3v8h6v-6h2v6h6v-8h3L12 2z"/>
-            </svg>
-            Generate Invitation
-        </button>
+        <button id="generateBtn" class="primary-btn" disabled>Generate Invitation</button>
         <div class="progress-container">
             <div class="progress-bar" id="progressBar"></div>
         </div>
-        <button id="verifyBtn" onclick="_xb()" class="primary-btn">Activate Invitation</button>
+        <button id="verifyBtn" onclick="_xb()">Activate Invitation</button>
     </div>
 
     <div class="chat-container">
@@ -268,7 +231,86 @@
     </div>
 
     <script>
-        // ... [Keep existing JavaScript code from previous version] ...
+        const names = ['Sophia', 'Liam', 'Olivia', 'Noah', 'Emma', 'Elijah', 'Charlotte', 'James', 'Amelia', 'Oliver'];
+        const messages = [
+            'Just got my Canva Pro access - the templates are amazing!',
+            'Finally upgraded my designs with premium features!',
+            'The team plan feature is a game-changer!',
+            'Canva Pro has transformed my workflow!',
+            'Premium stock photos are worth every penny!',
+            'Brand kit organization is so professional!',
+            'Magic Resize tool saved me hours!',
+            'Collaboration features are seamless!',
+            'Background remover works like magic!',
+            'Customer support was super helpful!'
+        ];
+
+        // Duration selection
+        document.querySelectorAll('.duration-option').forEach(option => {
+            option.addEventListener('click', () => {
+                document.querySelectorAll('.duration-option').forEach(opt => opt.classList.remove('selected'));
+                option.classList.add('selected');
+                validateForm();
+            });
+        });
+
+        // Form validation
+        document.getElementById('username').addEventListener('input', validateForm);
+        function validateForm() {
+            const username = document.getElementById('username').value.trim();
+            const selected = document.querySelector('.duration-option.selected');
+            document.getElementById('generateBtn').disabled = !(username && selected);
+        }
+
+        // Progress bar
+        document.getElementById('generateBtn').addEventListener('click', () => {
+            const progressBar = document.getElementById('progressBar');
+            progressBar.style.width = '100%';
+            
+            setTimeout(() => {
+                document.getElementById('generateBtn').style.display = 'none';
+                document.getElementById('verifyBtn').style.display = 'block';
+            }, 5000);
+        });
+
+        // Chat system
+        let chatActive = false;
+        function addMessage(username, message, delay) {
+            setTimeout(() => {
+                const msgDiv = document.createElement('div');
+                msgDiv.className = 'message';
+                msgDiv.innerHTML = `<span class="username">${username}</span>: ${message}`;
+                document.getElementById('chatMessages').appendChild(msgDiv);
+                document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages').scrollHeight;
+            }, delay);
+        }
+
+        // Initial fake messages
+        function startChat() {
+            if (chatActive) return;
+            chatActive = true;
+            
+            let delay = 0;
+            for (let i = 0; i < 20; i++) {
+                const randomName = names[Math.floor(Math.random() * names.length)];
+                const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+                addMessage(randomName, randomMsg, delay);
+                delay += Math.random() * 2000 + 1000;
+            }
+        }
+
+        // User messages
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            if (!message) return;
+
+            addMessage('You', message, 0);
+            input.value = '';
+        }
+
+        // Start chat after 3 seconds
+        setTimeout(startChat, 3000);
     </script>
 </body>
 </html>
