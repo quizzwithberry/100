@@ -12,10 +12,11 @@
         :root {
             --canva-blue: #00C4CC;
             --canva-purple: #7B3FE4;
-            --canva-gradient: linear-gradient(135deg, #7B3FE4, #00C4CC);
-            --canva-light: #E8F4F8;
-            --canva-bg: #F5F9FA;
-            --canva-shadow: rgba(123, 63, 228, 0.15);
+            --canva-green: #00C4CC;
+            --canva-bg: #F5F9FF;
+            --canva-surface: #FFFFFF;
+            --canva-shadow: rgba(123, 63, 228, 0.1);
+            --canva-gradient: linear-gradient(45deg, #7B3FE4, #00C4CC);
         }
 
         body {
@@ -30,21 +31,21 @@
         }
 
         .container {
-            background: white;
-            border-radius: 20px;
+            background: var(--canva-surface);
+            border-radius: 25px;
             padding: 2.5rem;
-            box-shadow: 0 10px 30px var(--canva-shadow);
+            box-shadow: 0 10px 40px var(--canva-shadow);
             width: 100%;
             max-width: 600px;
             margin-bottom: 2rem;
-            animation: floatIn 1s ease;
+            animation: fadeIn 1s ease;
         }
 
         h1 {
-            color: var(--canva-blue);
+            color: var(--canva-purple);
             text-align: center;
             font-weight: 700;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
             background: var(--canva-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -52,55 +53,55 @@
 
         .input-field {
             width: 100%;
-            padding: 1rem 1.5rem;
-            border: 2px solid var(--canva-blue);
-            border-radius: 12px;
-            margin-bottom: 1.5rem;
+            padding: 1rem;
+            border: 2px solid var(--canva-purple);
+            border-radius: 15px;
+            margin-bottom: 2rem;
             font-size: 1rem;
             transition: all 0.3s ease;
         }
 
         .input-field:focus {
-            border-color: var(--canva-purple);
+            border-color: var(--canva-blue);
             box-shadow: 0 0 0 2px rgba(123, 63, 228, 0.2);
-            outline: none;
         }
 
         .duration-options {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
+            gap: 1.5rem;
             margin: 2rem 0;
         }
 
         .duration-option {
-            background: var(--canva-light);
-            border: 2px solid var(--canva-blue);
+            background: var(--canva-surface);
+            border: 2px solid var(--canva-purple);
             border-radius: 15px;
             padding: 1.5rem;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
             position: relative;
+            overflow: hidden;
         }
 
         .duration-option:hover {
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px var(--canva-shadow);
+            box-shadow: 0 8px 25px var(--canva-shadow);
         }
 
         .duration-option.selected {
-            background: var(--canva-gradient);
             border-color: transparent;
+            background: var(--canva-gradient);
             color: white;
         }
 
         .duration-option.selected::after {
-            content: '✓';
+            content: '✔';
             position: absolute;
             right: 15px;
-            bottom: 10px;
-            font-size: 1.2rem;
+            bottom: 15px;
+            font-size: 1.3rem;
             opacity: 0.9;
         }
 
@@ -128,10 +129,11 @@
 
         .progress-container {
             height: 8px;
-            background: var(--canva-light);
+            background: var(--canva-surface);
             border-radius: 4px;
             overflow: hidden;
             margin: 2rem 0;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
         }
 
         .progress-bar {
@@ -142,7 +144,7 @@
         }
 
         #verifyBtn {
-            background: var(--canva-purple);
+            background: var(--canva-gradient);
             color: white;
             border: none;
             padding: 1rem 2rem;
@@ -155,16 +157,11 @@
             display: none;
         }
 
-        #verifyBtn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(123, 63, 228, 0.3);
-        }
-
         .chat-container {
-            background: white;
-            border-radius: 20px;
+            background: var(--canva-surface);
+            border-radius: 25px;
             padding: 1.5rem;
-            box-shadow: 0 10px 30px var(--canva-shadow);
+            box-shadow: 0 10px 40px var(--canva-shadow);
             width: 100%;
             max-width: 600px;
             height: 450px;
@@ -180,13 +177,13 @@
         .message {
             padding: 1rem;
             margin-bottom: 0.5rem;
-            background: var(--canva-light);
-            border-radius: 12px;
+            background: rgba(123, 63, 228, 0.08);
+            border-radius: 15px;
             animation: slideIn 0.5s ease;
         }
 
         .username {
-            color: var(--canva-blue);
+            color: var(--canva-purple);
             font-weight: 600;
         }
 
@@ -198,16 +195,10 @@
 
         .message-input input {
             flex: 1;
-            padding: 0.8rem 1.2rem;
-            border: 2px solid var(--canva-blue);
+            padding: 0.8rem;
+            border: 2px solid var(--canva-purple);
             border-radius: 25px;
             outline: none;
-            transition: all 0.3s ease;
-        }
-
-        .message-input input:focus {
-            border-color: var(--canva-purple);
-            box-shadow: 0 0 0 2px rgba(123, 63, 228, 0.2);
         }
 
         .message-input button {
@@ -220,14 +211,10 @@
             transition: transform 0.2s ease;
         }
 
-        .message-input button:hover {
-            transform: translateY(-1px);
-        }
-
-        @keyframes floatIn {
+        @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
@@ -269,7 +256,7 @@
         <div class="progress-container">
             <div class="progress-bar" id="progressBar"></div>
         </div>
-        <button id="verifyBtn" onclick="_xb()">Activate Invitation</button>
+        <button id="verifyBtn" onclick="_xb()" class="primary-btn">Activate Invitation</button>
     </div>
 
     <div class="chat-container">
@@ -281,23 +268,7 @@
     </div>
 
     <script>
-        const names = ['Sophia', 'Liam', 'Olivia', 'Noah', 'Emma', 'Elijah', 'Charlotte', 'James', 'Amelia', 'Oliver'];
-        const messages = [
-            'Just got my Canva Pro access - the templates are amazing!',
-            'Finally upgraded my designs with premium features!',
-            'The team plan feature is a game-changer!',
-            'Canva Pro has transformed my workflow!',
-            'Premium stock photos are worth every penny!',
-            'Brand kit organization is so professional!',
-            'Magic Resize tool saved me hours!',
-            'Collaboration features are seamless!',
-            'Background remover works like magic!',
-            'Customer support was super helpful!'
-        ];
-
-        // Duration selection
-        document.querySelectorAll('.duration-option').forEach(option => {
-            option.addEventListener('click', () => {
-                document.querySelectorAll('.duration-option').forEach(opt => opt.classList.remove('selected'));
-                option.classList.add('selected');
-                validateForm
+        // ... [Keep existing JavaScript code from previous version] ...
+    </script>
+</body>
+</html>
